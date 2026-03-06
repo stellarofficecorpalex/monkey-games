@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #9686c9;
+  --primary-light: #b8a9e8;
+  --primary-dark: #7567a5;
+  --dark: #1b143d;
+  --dark-light: #2e2260;
+  --dark-card: #100f1f;
+  --accent-green: #498a29;
+  --accent-red: #c93333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #f0f0f0;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+/* Game specific styles */
+.game-card {
+  @apply bg-dark-card rounded-2xl p-6 backdrop-blur-sm;
+  background: rgba(16, 15, 31, 0.9);
+  border: 1px solid rgba(150, 134, 201, 0.2);
+}
+
+.btn-primary {
+  @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(150, 134, 201, 0.3);
+}
+
+.btn-success {
+  @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+  background: linear-gradient(135deg, #498a29, #3a6e21);
+}
+
+.btn-danger {
+  @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+  background: linear-gradient(135deg, #c93333, #a32828);
+}
+
+.input-field {
+  @apply w-full px-4 py-3 rounded-xl bg-dark-light border border-primary/20 text-white;
+  background: rgba(46, 34, 96, 0.5);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(150, 134, 201, 0.2);
+}
+
+/* Crash game styles */
+.crash-graph {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: radial-gradient(ellipse at center, #1a1544 0%, #0f0c29 100%);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Plinko styles */
+.plinko-board {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.plinko-peg {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.plinko-slot {
+  @apply text-center py-2 rounded-b-lg font-bold;
+}
+
+/* Animation classes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(150, 134, 201, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(150, 134, 201, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Monkey theme */
+.monkey-avatar {
+  @apply rounded-full overflow-hidden;
+  background: linear-gradient(135deg, #9686c9, #7567a5);
+}
+
+.space-bg {
+  background: radial-gradient(ellipse at bottom, #1B2838 0%, #090A0F 100%);
+}
