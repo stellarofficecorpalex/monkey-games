@@ -118,6 +118,7 @@ export class BonusService {
 
     return this.dataSource.transaction(async (manager) => {
       const user = await this.userRepository.findOne({ where: { id: userId } });
+      if (!user) throw new NotFoundException('User not found');
 
       // Update bonus
       pendingBonus.amount = bonusAmount;

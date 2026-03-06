@@ -24,6 +24,7 @@ export class WalletService {
         where: { id: userId },
         lock: { mode: 'pessimistic_write' },
       });
+      if (!user) throw new NotFoundException('User not found');
 
       const balanceBefore = user.balance;
       user.balance = Number(user.balance) + amount;
@@ -56,6 +57,7 @@ export class WalletService {
         where: { id: userId },
         lock: { mode: 'pessimistic_write' },
       });
+      if (!user) throw new NotFoundException('User not found');
 
       if (user.balance < amount) {
         throw new BadRequestException('Insufficient balance');

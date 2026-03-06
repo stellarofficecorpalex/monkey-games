@@ -27,6 +27,9 @@ export class GameEngineService {
     if (!game) {
       throw new NotFoundException('Game not found');
     }
+    
+    // Store game type before using it
+    const gameType = game.type;
 
     const user = await this.usersRepository.findOne({
       where: { id: userId },
@@ -265,6 +268,7 @@ export class GameEngineService {
 
     // Recalculate result
     const game = await this.gamesRepository.findOne({ where: { id: round.game.id } });
+    if (!game) throw new NotFoundException('Game not found');
     let verifiedResult: any;
 
     switch (game.type) {

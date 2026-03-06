@@ -61,12 +61,14 @@ export class AdminService {
 
   async updateUserStatus(userId: string, isActive: boolean): Promise<User> {
     const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) throw new NotFoundException('User not found');
     user.isActive = isActive;
     return this.userRepository.save(user);
   }
 
   async updateGameRtp(gameId: string, rtp: number): Promise<Game> {
     const game = await this.gameRepository.findOne({ where: { id: gameId } });
+    if (!game) throw new NotFoundException('Game not found');
 
     if (rtp < game.minRtp || rtp > game.maxRtp) {
       throw new ForbiddenException(`RTP must be between ${game.minRtp} and ${game.maxRtp}`);
